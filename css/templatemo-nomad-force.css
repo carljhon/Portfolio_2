@@ -342,6 +342,7 @@ strong {
   top: 8px;
 }
 
+
 /*---------------------------------------
   HERO              
 -----------------------------------------*/
@@ -702,6 +703,11 @@ strong {
 @media screen and (max-width: 767px) {
   .news-detail-title {
     font-size: 36px;
+  }
+
+  #search {
+    width: 100%;
+    margin-top: .5rem;
   }
 }
 
