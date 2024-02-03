@@ -77,7 +77,7 @@ https://templatemo.com/tm-567-nomad-force
                         <div class="col-lg-8 col-11 mx-auto g-0">
                             <h2 class="mb-3" data-aos="fade-up">News API</h2>
 
-                            <p class="me-4" data-aos="fade-up">I have developed a sophisticated webpage that seamlessly integrates a third-party News API, enabling the retrieval and presentation of current news content. This platform offers users a refined and interactive experience, delivering timely updates sourced from the external API. This uses free subcription so it is limited to 100 request per-day.</p>
+                            <p class="me-4" data-aos="fade-up">I have developed a sophisticated webpage that seamlessly integrates a third-party News API, enabling the retrieval and presentation of current news content. This platform offers users a refined and interactive experience, delivering timely updates sourced from the external API. This uses free subcription so it is limited to <mark>100 request</mark> per-day.</p>
                         </div>
 
                         <div class="col-12 mx-auto g-0">
@@ -219,7 +219,11 @@ https://templatemo.com/tm-567-nomad-force
                     const response = await fetch(url, options);
                     const result = await response.json();
     
-                    images.innerHTML = ''
+                    images.innerHTML = '' // clear div
+                    
+                    if(result.status == 'error'){ // check for error response
+                        throw result
+                    }
 
                     result.articles.forEach((element, index) => {
 
@@ -237,24 +241,23 @@ https://templatemo.com/tm-567-nomad-force
                     })
 
                 } catch (error) {
-                    console.error(error);
                     errorPage.classList.remove('d-none')
                     previous.classList.add('disabled')
                     next.classList.add('disabled')
                 }
             }
 
-            previous.addEventListener('click', ()=> {
+            previous.addEventListener('click', (e)=> {
                 clickedClicks -= 1
-
-                console.log(clickedClicks)
-
-
-                // let searchItem = search.elements.namedItem('searches').value
-                // url = `https://newsapi.org/v2/everything?q=${searchItem}&page=${clickedClicks}&pageSize=18&apiKey=${apikey}`;
-                // images.innerHTML = ''
-                // getData()
-            })
+                if(clickedClicks > 0){ // prevent to page 0
+                    let searchItem = search.elements.namedItem('searches').value
+                    url = `https://newsapi.org/v2/everything?q=${searchItem}&page=${clickedClicks}&pageSize=18&apiKey=${apikey}`;
+                    images.innerHTML = ''
+                    getData()
+                } else {
+                    clickedClicks = 1
+                }
+            })  
 
             next.addEventListener('click', ()=> {
                 clickedClicks += 1
