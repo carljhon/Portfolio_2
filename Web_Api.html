@@ -192,7 +192,7 @@ https://templatemo.com/tm-567-nomad-force
 
             const apikey = '6736e77119e64539b94ab49bc965916d'
 
-            let url = `https://thingproxy.freeboard.io/fetch/https://newsapi.org/v2/everything?q=food&page=1&pageSize=18&apiKey=${apikey}`;
+            let url = `https://newsapi.org/v2/everything?q=food&page=1&pageSize=18&apiKey=${apikey}`;
             const options = {
                 method: 'GET'
             }
@@ -202,7 +202,7 @@ https://templatemo.com/tm-567-nomad-force
                 e.preventDefault()
                 let searchItem = search.elements.namedItem('searches').value
 
-                url = `https://thingproxy.freeboard.io/fetch/https://newsapi.org/v2/everything?q=${searchItem}&page=1&pageSize=18&apiKey=6736e77119e64539b94ab49bc965916d`;
+                url = `/https://newsapi.org/v2/everything?q=${searchItem}&page=1&pageSize=18&apiKey=6736e77119e64539b94ab49bc965916d`;
 
                 setTimeout(getData(), 500)
             })
@@ -221,6 +221,8 @@ https://templatemo.com/tm-567-nomad-force
                     const result = await response.json();
     
                     images.innerHTML = '' // clear div
+
+                    console.log(result)
                     
                     if(result.status == 'error'){ // check for error response
                         throw result
@@ -252,7 +254,7 @@ https://templatemo.com/tm-567-nomad-force
                 clickedClicks -= 1
                 if(clickedClicks > 0){ // prevent to page 0
                     let searchItem = search.elements.namedItem('searches').value
-                    url = `https://thingproxy.freeboard.io/fetch/https://newsapi.org/v2/everything?q=${searchItem}&page=${clickedClicks}&pageSize=18&apiKey=${apikey}`;
+                    url = `/https://newsapi.org/v2/everything?q=${searchItem}&page=${clickedClicks}&pageSize=18&apiKey=${apikey}`;
                     images.innerHTML = ''
                     getData()
                 } else {
@@ -263,7 +265,7 @@ https://templatemo.com/tm-567-nomad-force
             next.addEventListener('click', ()=> {
                 clickedClicks += 1
                 let searchItem = search.elements.namedItem('searches').value
-                url = `https://thingproxy.freeboard.io/fetch/https://newsapi.org/v2/everything?q=${searchItem}&page=${clickedClicks}&pageSize=18&apiKey=${apikey}`;
+                url = `/https://newsapi.org/v2/everything?q=${searchItem}&page=${clickedClicks}&pageSize=18&apiKey=${apikey}`;
                 images.innerHTML = ''
                 getData()
             })
