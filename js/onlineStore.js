@@ -17,7 +17,7 @@ bar.addEventListener('click', ()=> {
 })
 
 // timer
-var countDownDate = new Date("Mar 10, 2024 00:00:00").getTime();
+var countDownDate = new Date("Mar 10, 2025 00:00:00").getTime();
 
 var x = setInterval(function() { // Update the countdown every 1 second
 
