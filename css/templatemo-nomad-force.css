@@ -205,6 +205,41 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
+/* ---------- */
+
+.custom-link-2 {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  display: inline-block;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  font-size: 1.7rem;
+}
+
+.custom-link-2::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  position: absolute;
+  left: auto;
+  right: 0;
+  z-index: -1;
+  transition: width .6s cubic-bezier(.25,.8,.25,1) 0s;
+  background: currentColor;
+}
+
+.custom-link-2:hover::after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+
+.custom-link-2:hover,
+.custom-link-2:hover::after {
+  color: rgb(116, 116, 116);
+}
+
 /*---------------------------------------
   NAVIGATION               
 -----------------------------------------*/
